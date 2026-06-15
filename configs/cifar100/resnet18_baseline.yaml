@@ -1,0 +1,30 @@
+# CIFAR-100: ResNet-18 baseline (standard 3x3 convolutions)
+model:
+  name: resnet18
+  num_classes: 100
+  dropout: 0.1
+
+train:
+  epochs: 300
+  optimizer: adamw
+  lr: 0.0003
+  weight_decay: 0.05
+  scheduler: cosine
+  warmup_epochs: 5
+  label_smoothing: 0.1
+  amp: true
+  batch_size: 128
+  num_workers: 4
+  mixup_alpha: 0.2
+  cutmix_alpha: 1.0
+  log_interval: 50
+  save_interval: 25
+  seed: 42
+
+dataset:
+  name: cifar100
+  root: ./data
+  image_size: 32
+
+output_dir: ./checkpoints/cifar100_resnet18
+cuda: true

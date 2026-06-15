@@ -1,0 +1,34 @@
+# CIFAR-100: ablation uniform dilation (all d=1, like DY-Conv same-scale paradigm)
+model:
+  name: kbd_net
+  num_classes: 100
+  dropout: 0.1
+  kbd_conv:
+    num_basis: 4
+    dilations: [1, 1, 1, 1]
+    routing:
+      pool: gap
+      reduction_ratio: 4
+      mode: dynamic
+    normalization: bn
+    activation: silu
+
+train:
+  epochs: 200
+  optimizer: adamw
+  lr: 0.0003
+  weight_decay: 0.05
+  scheduler: cosine
+  warmup_epochs: 5
+  label_smoothing: 0.1
+  amp: true
+  batch_size: 128
+  num_workers: 4
+  seed: 42
+
+dataset:
+  name: cifar100
+  root: ./data
+
+output_dir: ./checkpoints/cifar100_ablation_dilation_uniform
+cuda: true

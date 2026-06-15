@@ -1,0 +1,15 @@
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+numpy>=1.21.0
+pyyaml>=6.0
+tqdm>=4.62.0
+pillow>=9.0.0
+scipy>=1.7.0
+matplotlib>=3.5.0
+seaborn>=0.12.0
+opencv-python>=4.5.0
+thop>=0.1.1.post2209072238
+einops>=0.6.0
+jupyter>=1.0
+ipykernel>=6.0

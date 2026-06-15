@@ -1,0 +1,40 @@
+# ImageNet-1K: KBD-Net full (M=4, d=[1,2,3,4], dynamic routing)
+model:
+  name: kbd_net
+  num_classes: 1000
+  dropout: 0.1
+  kbd_conv:
+    num_basis: 4
+    dilations: [1, 2, 3, 4]
+    routing:
+      pool: gap
+      reduction_ratio: 4
+      mode: dynamic
+    normalization: bn
+    activation: silu
+    residual: true
+
+train:
+  epochs: 300
+  optimizer: adamw
+  lr: 0.0003
+  weight_decay: 0.05
+  scheduler: cosine
+  warmup_epochs: 5
+  label_smoothing: 0.1
+  amp: true
+  batch_size: 256
+  num_workers: 8
+  mixup_alpha: 0.2
+  cutmix_alpha: 1.0
+  log_interval: 50
+  save_interval: 25
+  seed: 42
+
+dataset:
+  name: imagenet
+  root: ./data/imagenet
+  image_size: 224
+
+output_dir: ./checkpoints/imagenet1k_kbd
+cuda: true
